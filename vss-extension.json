@@ -57,10 +57,6 @@
             "path": "vsts-variable-set/vsts-variable-set.ps1"
         },
         {
-            "path": "vsts-variable-set/vsts-variable-shared.psm1",
-            "contentType": "text/plain"
-        },
-        {
             "path": "vsts-variable-set/task.json"
         },
         {
@@ -69,10 +65,6 @@
 
         {
             "path": "vsts-variable-expand/vsts-variable-expand.ps1"
-        },
-        {
-            "path": "vsts-variable-expand/vsts-variable-shared.psm1",
-            "contentType": "text/plain"
         },
         {
             "path": "vsts-variable-expand/task.json"
