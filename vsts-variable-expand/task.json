@@ -20,7 +20,7 @@
     ],
     "inputs": [
         {
-            "defaultValue": "*",
+            "defaultValue": "",
             "helpMarkdown": "List of variables to expand separated by `,`, `;` or newline. Only supply the variable name and do not include `$(...)`.",
             "label": "Variables",
             "name": "VariableNames",
@@ -28,7 +28,7 @@
             "type": "multiLine"
         }
     ],
-    "instanceNameFormat": "Expand variables: $(VariableNames)",
+    "instanceNameFormat": "Expand variables: '$(VariableNames)'",
     "execution": {
         "PowerShell": {
             "target": "$(currentDirectory)\\vsts-variable-expand.ps1",
