@@ -25,7 +25,7 @@
             "label": "Variables",
             "name": "VariableNames",
             "required": true,
-            "type": "multiline"
+            "type": "multiLine"
         }
     ],
     "instanceNameFormat": "Expand variables: $(VariableNames)",

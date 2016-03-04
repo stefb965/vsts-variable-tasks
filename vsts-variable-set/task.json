@@ -22,7 +22,7 @@
         {
             "defaultValue": "",
             "helpMarkdown": "Variable to set. Only supply the variable name and do not include `$(...)`.",
-            "label": "Variables",
+            "label": "Variable",
             "name": "VariableName",
             "required": true,
             "type": "string"
@@ -36,7 +36,7 @@
             "type": "string"
         }
     ],
-    "instanceNameFormat": "Set variable: $(VariableNames) to: '$(Value)'",
+    "instanceNameFormat": "Set variable: $(VariableName) to: '$(Value)'",
     "execution": {
         "PowerShell": {
             "target": "$(currentDirectory)\\vsts-variable-set.ps1",
