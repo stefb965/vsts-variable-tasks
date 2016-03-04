@@ -28,11 +28,12 @@ function Expand-Variable{
     }   
     process
     {
-        $newValue = $value
         do 
         {
+            $newValue = $value
             $value = [Microsoft.TeamFoundation.DistributedTask.Agent.Common.ContextExtensions]::ExpandVariables($distributedTaskContext, $newValue)
-        } while ($value -ne $newValue)
+        } 
+        while ($value -ne $newValue)
     }
     end
     {
