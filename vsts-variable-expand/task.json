@@ -21,19 +21,11 @@
     "inputs": [
         {
             "defaultValue": "*",
-            "helpMarkdown": "List of variables to expand separated by `,`, `;` or newline. Only supply the variable name and do not include `$(...)`. Supports wildcards `*` and `?`.",
+            "helpMarkdown": "List of variables to expand separated by `,`, `;` or newline. Only supply the variable name and do not include `$(...)`.",
             "label": "Variables",
             "name": "VariableNames",
             "required": true,
-            "type": "string"
-        },
-        {
-            "defaultValue": "false",
-            "helpMarkdown": "Expand secret variables.",
-            "label": "Expand secret variables",
-            "name": "ExpandSecrets",
-            "required": true,
-            "type": "booloan"
+            "type": "multiline"
         }
     ],
     "instanceNameFormat": "Expand variables: $(VariableNames)",
