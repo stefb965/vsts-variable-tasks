@@ -1,0 +1,106 @@
+{
+    "manifestVersion": 1,
+    "id": "jessehouwing-vsts-variable-tasks",
+    "name": "Variable Toolbox",
+    "version": "0.0.0",
+    "publisher": "jessehouwing",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "scope": [
+        "vso.build"
+    ],
+    "description": "Build and Release Management tasks for setting and expanding variables.",
+    "categories": [
+        "Build and release"
+    ],
+    "tags": [
+        "Extension",
+        "Release",
+        "Build",
+        "Variable",
+        "Expand",
+        "Override"
+    ],
+    "screenshots": [
+        {
+            "path": "extension/Images/Screenshots/setvariable.png"
+        }
+    ],
+    "content": {
+        "details": {
+            "path": "readme.md"
+        },
+        "license": {
+            "path": "license.txt"
+        }
+    },
+    "links": {
+        "getstarted": {
+            "uri": "https://github.com/jessehouwing/vsts-variable-tasks/wiki"
+        },
+        "support": {
+            "uri": "https://github.com/jessehouwing/vsts-variable-tasks/issues"
+        }
+    },
+    "branding": {
+        "color": "rgb(36, 43, 50)",
+        "theme": "dark"
+    },
+    "icons": {
+        "default": "extension/images/extension-icon.png"
+    },
+    "files": [
+        {
+            "path": "vsts-variable-set/vsts-variable-set.ps1"
+        },
+        {
+            "path": "vsts-variable-set/vsts-variable-shared.psm1",
+            "contentType": "text/plain"
+        },
+        {
+            "path": "vsts-variable-set/task.json"
+        },
+        {
+            "path": "vsts-variable-set/icon.png"
+        },
+
+        {
+            "path": "vsts-variable-expand/vsts-variable-expand.ps1"
+        },
+        {
+            "path": "vsts-variable-expand/vsts-variable-shared.psm1",
+            "contentType": "text/plain"
+        },
+        {
+            "path": "vsts-variable-expand/task.json"
+        },
+        {
+            "path": "vsts-variable-expand/icon.png"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "vsts-variable-set",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "vsts-variable-set"
+            }
+        },
+        {
+            "id": "vsts-variable-expand",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "vsts-variable-expand"
+            }
+        }        
+    ]
+}
