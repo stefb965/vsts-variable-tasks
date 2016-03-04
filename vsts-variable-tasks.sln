@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{60191C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{6D148078-ED5C-45F9-909B-4ACDBD6F0157}"
 	ProjectSection(SolutionItems) = preProject
+		extension\images\Screenshots\expandvariables.png = extension\images\Screenshots\expandvariables.png
+		extension\images\Screenshots\In-workflow.png = extension\images\Screenshots\In-workflow.png
 		extension\images\Screenshots\setvariable.png = extension\images\Screenshots\setvariable.png
 	EndProjectSection
 EndProject

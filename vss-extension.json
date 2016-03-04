@@ -26,7 +26,13 @@
     ],
     "screenshots": [
         {
+            "path": "extension/Images/Screenshots/in-workflow.png"
+        },
+        {
             "path": "extension/Images/Screenshots/setvariable.png"
+        },
+        {
+            "path": "extension/Images/Screenshots/expandvariable.png"
         }
     ],
     "content": {
