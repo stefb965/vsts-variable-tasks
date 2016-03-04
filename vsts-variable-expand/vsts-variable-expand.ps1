@@ -1,5 +1,6 @@
 ﻿[cmdletbinding()]
 param(
+    [Parameter(Mandatory=$true)]
     [ValidateNotNullOrEmpty()]
     [string] $VariableNames,
     [ValidateSet("true", "false", "1", "0")]
@@ -17,6 +18,8 @@ import-module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 function Expand-Variable{
     param
     (
+        [Parameter(Mandatory=$true)]
+        [ValidateNotNullOrEmpty()]
         [string] $Variable
     )
     begin
@@ -47,7 +50,7 @@ for ($i = 0; $i -lt $MaxDepth; $i++)
         if ($Variable -ne "")
         {
             $currentValue = Get-TaskVariable $distributedTaskContext $Variable
-            $newValue = Expand-Variable $Vaiable
+            $newValue = Expand-Variable $Variable
 
             if ($currentValue -cne $newValue)
             {
