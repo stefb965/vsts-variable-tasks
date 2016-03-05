@@ -12,9 +12,9 @@ In comes the fairy dust :).
 
 Just add the Expand variable task to your workflow and tell it to expand your variable:
 
-**Expand variable: 'Build.DropLocation'**
-
- * *Variablename(s)*: `Build.DropLocation`
+> **Expand variable: 'Build.DropLocation'**
+> 
+> * *Variablename(s)*: `Build.DropLocation`
 
 Supported operations:
 
