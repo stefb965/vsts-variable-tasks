@@ -1,10 +1,19 @@
 # Description
 
-Have you ever wanted to next Variables? Unfortunately, that's not possible with teh standard Variables screen.
+Have you ever wanted to nest Variables? Unfortunately, that's not possible with the standard Variables screen.
+
+| **Variable**         | **Value**                                                  |
+| -------------------- | ---------------------------------------------------------- |
+| Build.DropLocation   | \\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber) |
+
 
 But now you can!
 
-These two simple tasks allow you to change the value of a variable mid-build.
+Just add the Expand variable task to your workflow and tell it to expand your variable:
+
+**Expand variable: 'Build.DropLocation'**
+
+ * *Variablename(s)*: `Build.DropLocation`
 
 Supported operations:
 
