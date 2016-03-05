@@ -6,7 +6,7 @@ Have you ever wanted to nest Variables? Unfortunately, that's not possible with 
 | -------------------- | ---------------------------------------------------------- |
 | Build.DropLocation   | \\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber) |
 
-Will simply send the literal text to teh tasks in your workflow.
+Will simply send the literal text to the tasks in your workflow.
 
 In comes the fairy dust :).
 
