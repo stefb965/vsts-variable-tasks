@@ -2,7 +2,7 @@
 
 Have you ever wanted to nest Variables? Unfortunately, that's not possible with the standard Variables screen.
 
-| **Variable**         | **Value**                                                  |
+| Variable             | Value                                                      |
 | -------------------- | ---------------------------------------------------------- |
 | Build.DropLocation   | \\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber) |
 
