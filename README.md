@@ -1,13 +1,14 @@
 # Description
 
-Have you ever wanted to nest Variables? Unfortunately, that's not possible with the standard Variables screen.
+Have you ever wanted to nest Variables? Unfortunately, that's not possible with the standard Variables screen and requires a bit of fairy dust.
 
 | Variable             | Value                                                      |
 | -------------------- | ---------------------------------------------------------- |
 | Build.DropLocation   | \\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber) |
 
+Will simply send the literal text to teh tasks in your workflow.
 
-But now you can!
+In comes the fairy dust :).
 
 Just add the Expand variable task to your workflow and tell it to expand your variable:
 
