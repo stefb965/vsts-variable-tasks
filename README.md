@@ -2,9 +2,9 @@
 
 Have you ever wanted to nest Variables? Unfortunately, that's not possible with the standard Variables screen and requires a bit of fairy dust.
 
-| Variable             | Value                                                      |
-| -------------------- | ---------------------------------------------------------- |
-| Build.DropLocation   | \\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber) |
+| Variable             | Value                                                        |
+| -------------------- | ------------------------------------------------------------ |
+| Build.DropLocation   | \\\\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber) |
 
 Will simply send the literal text to the tasks in your workflow.
 
