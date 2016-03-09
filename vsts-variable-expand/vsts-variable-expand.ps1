@@ -48,6 +48,7 @@ function Get-Variables{
     )
     begin
     {
+        Write-Debug "Entering: Get-Variables"
         $variableService = $distributedTaskContext.GetType().GetMethod("GetService").MakeGenericMethod([Microsoft.TeamFoundation.DistributedTask.Agent.Interfaces.IVariableService]).Invoke($distributedTaskContext)
         $dictionary = @{}
 
@@ -65,6 +66,8 @@ function Get-Variables{
     }
     end
     {
+        Write-Debug ($variables | Out-String)
+        Write-Debug "Leaving: Get-Variables"
         return $variables
     }
 }
@@ -77,7 +80,7 @@ function Expand-Variables
     }
     begin
     {
-
+        Write-Debug "Entering: Expand-Variables"
     }
     process
     {
@@ -87,9 +90,10 @@ function Expand-Variables
             {
                 $Variable = $Variable.Trim()
 
-                if ($variable -eq "*")
+                if ($Variable -eq "*")
                 {
-                    Expand-Variables (Get-variables -safe)
+                    Write-Output "Expanding all variables."
+                    Expand-Variables -variables (Get-variables -safe)
                     return
                 }
                 
@@ -109,7 +113,7 @@ function Expand-Variables
     }
     end
     {
-        
+        Write-Debug "Leaving: Expand-Variables"
     }
 }
 
