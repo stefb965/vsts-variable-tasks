@@ -41,7 +41,7 @@ function Expand-Variable{
     }
 }
 
-function Get-Variables{
+function Get-VariableNames{
     param
     (
         [switch] $safe = $false
@@ -66,9 +66,8 @@ function Get-Variables{
     }
     end
     {
-        Write-Debug ($variables | Out-String)
         Write-Debug "Leaving: Get-Variables"
-        return $variables
+        return $variables.Keys
     }
 }
 
@@ -93,11 +92,9 @@ function Expand-Variables
                 if ($Variable -eq "*")
                 {
                     Write-Output "Expanding all variables."
-                    Expand-Variables -variables (Get-variables -safe)
-                    return
+                    Expand-Variables -variables (Get-Variables -safe)
                 }
-                
-                if ($Variable -ne "")
+                elseif ($Variable -ne "")
                 {
                     $currentValue = Get-TaskVariable $distributedTaskContext $Variable
                     $newValue = Expand-Variable $Variable
