@@ -92,7 +92,7 @@ function Expand-Variables
                 if ($Variable -eq "*")
                 {
                     Write-Output "Expanding all variables."
-                    Expand-Variables -variables (Get-Variables -safe)
+                    Expand-Variables -variables (Get-VariableNames -safe)
                 }
                 elseif ($Variable -ne "")
                 {
