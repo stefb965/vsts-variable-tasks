@@ -49,7 +49,10 @@ function Get-VariableNames{
     begin
     {
         Write-Debug "Entering: Get-Variables"
-        $variableService = $distributedTaskContext.GetType().GetMethod("GetService").MakeGenericMethod([Microsoft.TeamFoundation.DistributedTask.Agent.Interfaces.IVariableService]).Invoke($distributedTaskContext)
+        
+        $type = [Microsoft.TeamFoundation.DistributedTask.Agent.Interfaces.IServiceManager] 
+        $variableService = $type.GetMethod("GetService").MakeGenericMethod([Microsoft.TeamFoundation.DistributedTask.Agent.Interfaces.IVariableService]).Invoke($distributedTaskContext, @())
+
         $dictionary = @{}
 
     }
