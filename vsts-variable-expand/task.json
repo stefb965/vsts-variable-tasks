@@ -20,8 +20,8 @@
     ],
     "inputs": [
         {
-            "defaultValue": "",
-            "helpMarkdown": "List of variables to expand separated by `,`, `;` or newline. Only supply the variable name and do not include `$(...)`.",
+            "defaultValue": "*",
+            "helpMarkdown": "List of variables to expand separated by `,`, `;` or newline. Only supply the variable name and do not include `$(...)`. To expand all variables, enter `*`.",
             "label": "Variables",
             "name": "VariableNames",
             "required": true,
