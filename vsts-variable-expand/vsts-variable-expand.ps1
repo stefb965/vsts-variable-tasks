@@ -74,9 +74,9 @@ function Get-VariableNames{
 function Expand-Variables
 {
     param
-    {
+    (
         [array] $variables = @()
-    }
+    )
     begin
     {
         Write-Debug "Entering: Expand-Variables"
