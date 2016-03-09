@@ -52,25 +52,23 @@ function Get-VariableNames{
         
         $type = [Microsoft.TeamFoundation.DistributedTask.Agent.Interfaces.IServiceManager] 
         $variableService = $type.GetMethod("GetService").MakeGenericMethod([Microsoft.TeamFoundation.DistributedTask.Agent.Interfaces.IVariableService]).Invoke($distributedTaskContext, @())
-
-        $dictionary = @{}
-
+        $dictionary = New-Object "System.Collections.Generic.Dictionary[string,string]" ([System.StringComparer]::OrdinalIgnoreCase)
     }
     process
     {
         if ($safe.IsPresent)
         {
-            $variables = $variableService.MergeSafeVariables($dictionary)
+            $variableService.MergeSafeVariables($dictionary)
         }
         else
         {
-            $variables = $variableService.MergeVariables($dictionary)
+            $variableService.MergeVariables($dictionary)
         }
     }
     end
     {
         Write-Debug "Leaving: Get-Variables"
-        return $variables.Keys
+        return @($dictionary.Keys)
     }
 }
 
@@ -86,26 +84,24 @@ function Expand-Variables
     }
     process
     {
-        for ($i = 0; $i -lt $MaxDepth; $i++)
+        $Variables = $Variables | %{ $_.Trim() }
+        
+        if ($Variables -contains "*")
         {
-            foreach ($Variable in $Variables)
+            Expand-Variables -variables (Get-VariableNames -safe)
+            return;
+        }
+        else
+        {
+            for ($i = 0; $i -lt $MaxDepth; $i++)
             {
-                $Variable = $Variable.Trim()
-
-                if ($Variable -eq "*")
+                foreach ($Variable in $Variables)
                 {
-                    Write-Output "Expanding all variables."
-                    Expand-Variables -variables (Get-VariableNames -safe)
-                }
-                elseif ($Variable -ne "")
-                {
-                    $currentValue = Get-TaskVariable $distributedTaskContext $Variable
-                    $newValue = Expand-Variable $Variable
-
-                    if ($currentValue -cne $newValue)
+                    $Variable = $Variable.Trim()
+                
+                    if ($Variable -ne "")
                     {
-                        Write-Output "Setting '$Variable' to '$newValue'."
-                        Write-Host "##vso[task.setvariable variable=$($Variable);]$newValue"
+                        Invoke-ExpandVariable $Variable
                     }
                 }
             }
@@ -117,6 +113,37 @@ function Expand-Variables
     }
 }
 
+function Invoke-ExpandVariable
+{
+    param
+    (
+        [string] $name
+    )
+
+    begin
+    {
+        Write-Debug "Entering: Expand variable"
+    }
+    process
+    {
+        for ($i = 0; $i -lt $MaxDepth; $i++)
+        {
+            $currentValue = Get-TaskVariable $distributedTaskContext $Variable
+            $newValue = Expand-Variable $Variable
+
+            if ($currentValue -cne $newValue)
+            {
+                Write-Output "Setting '$Variable' to '$newValue'."
+                Write-Host "##vso[task.setvariable variable=$($Variable);]$newValue"
+                break
+            }
+        }
+    }
+    end
+    {
+        Write-Debug "Leaving: Expand variable"
+    }
+}
 $Variables = ($VariableNames -split "`r?`n|;|,")
 
 Expand-Variables $Variables
