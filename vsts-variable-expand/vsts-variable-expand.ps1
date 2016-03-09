@@ -41,25 +41,80 @@ function Expand-Variable{
     }
 }
 
-$Variables = ($VariableNames -split "`r?`n|;|,")
-
-for ($i = 0; $i -lt $MaxDepth; $i++)
-{
-    foreach ($Variable in $Variables)
+function Get-Variables{
+    param
+    (
+        [switch] $safe = $false
+    )
+    begin
     {
-        $Variable = $Variable.Trim()
-        if ($Variable -ne "")
-        {
-            $currentValue = Get-TaskVariable $distributedTaskContext $Variable
-            $newValue = Expand-Variable $Variable
+        $variableService = $distributedTaskContext.GetType().GetMethod("GetService").MakeGenericMethod([Microsoft.TeamFoundation.DistributedTask.Agent.Interfaces.IVariableService]).Invoke($distributedTaskContext)
+        $dictionary = @{}
 
-            if ($currentValue -cne $newValue)
+    }
+    process
+    {
+        if ($safe.IsPresent)
+        {
+            $variables = $variableService.MergeSafeVariables($dictionary)
+        }
+        else
+        {
+            $variables = $variableService.MergeVariables($dictionary)
+        }
+    }
+    end
+    {
+        return $variables
+    }
+}
+
+function Expand-Variables
+{
+    param
+    {
+        [array] $variables = @()
+    }
+    begin
+    {
+
+    }
+    process
+    {
+        for ($i = 0; $i -lt $MaxDepth; $i++)
+        {
+            foreach ($Variable in $Variables)
             {
-                Write-Output "Setting '$Variable' to '$newValue'."
-                Write-Host "##vso[task.setvariable variable=$($Variable);]$newValue"
+                $Variable = $Variable.Trim()
+
+                if ($variable -eq "*")
+                {
+                    Expand-Variables (Get-variables -safe)
+                    return
+                }
+                
+                if ($Variable -ne "")
+                {
+                    $currentValue = Get-TaskVariable $distributedTaskContext $Variable
+                    $newValue = Expand-Variable $Variable
+
+                    if ($currentValue -cne $newValue)
+                    {
+                        Write-Output "Setting '$Variable' to '$newValue'."
+                        Write-Host "##vso[task.setvariable variable=$($Variable);]$newValue"
+                    }
+                }
             }
         }
     }
+    end
+    {
+        
+    }
 }
+
+$Variables = ($VariableNames -split "`r?`n|;|,")
+
+Expand-Variables $Variables
 
 Write-Host "##vso[task.complete result=Succeeded;]DONE"
