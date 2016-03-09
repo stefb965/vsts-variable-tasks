@@ -35,7 +35,7 @@ Have you ever wanted to change the value of a variable between multiple build st
 
 You can use the value of other build variables to setup the value.
 
-> **Set: 'Build.DropLocation' to `\\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber)'** 
+> **Set: 'Build.DropLocation' to '\\\\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber)'** 
 > 
 > * *Variablename*: `Build.DropLocation`
 > * *Value*: `\\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber)`
