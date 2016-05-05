@@ -20,12 +20,13 @@ switch (option) {
         break;
 }
 
-if (variable.search(/^Build[._]BuildNumber$/i)) {
+if (variable.search(/^Build[._]BuildNumber$/i) > 0) {
     tl.command("build.updatebuildnumber", null, output);
 } else {
     tl.setVariable(variable, output);
 }
 
+tl.setResult(tl.TaskResult.Succeeded);
 
 function searchAndReplace(): string {
     const method = tl.getInput("searchReplace", true);
