@@ -43,15 +43,14 @@ function searchAndReplace(): string {
         const searchExpression = new RegExp(search, regexOptions);
 
         const result = value.match(searchExpression);
-        switch (result.length) {
-            case 0:
-                tl.warning("Found no matches");
-                return "";
-            case 1:
-                return result[0];
-            default:
+        if (!result || result.length === 0) {
+            tl.warning("Found no matches");
+            return "";
+        } else {
+            if (result.length > 1) {
                 tl.warning("Found multiple matches, setting the first");
-                return result[0];
+            }
+            return result[0];
         }
     }
     if (method === "regex") {
