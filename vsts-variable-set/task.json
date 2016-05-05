@@ -37,11 +37,15 @@
         }
     ],
     "instanceNameFormat": "Set variable: $(VariableName) to: '$(Value)'",
-    "execution": {
-        "PowerShell": {
-            "target": "$(currentDirectory)\\vsts-variable-set.ps1",
-            "argumentFormat": "",
-            "workingDirectory": "$(currentDirectory)"
-        }
+  "execution": {
+    "PowerShell": {
+      "target": "$(currentDirectory)\\vsts-variable-set.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    },
+    "Node": {
+      "target": "vsts-variable-set.js",
+      "argumentFormat": ""
     }
+  }
 }

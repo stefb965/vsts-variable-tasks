@@ -110,20 +110,19 @@ function decodeString(): string {
 function stripSlashes(str : string) : string {
     return str.replace(/\\(.?)/g, (s, n1) => {
         switch (n1) {
-        case "\\":
-            return "\\";
-        case "0":
-            return "\u0000";
-        case "":
-            return "";
-        default:
-            return n1;
+            case "\\":
+                return "\\";
+            case "0":
+                return "\u0000";
+            case "":
+                return "";
+            default:
+                return n1;
         }
     });
 }
 
 function addSlashes(str : string) : string {
-    return (str + "")
-        .replace(/[\\"']/g, "\\$&")
-        .replace(/\u0000/g, "\\0");
+    return str.replace(/[\\"']/g, "\\$&")
+              .replace(/\u0000/g, "\\0");
 }

@@ -12,6 +12,14 @@ Write-Verbose "Parameter Values"
 $PSBoundParameters.Keys | %{ Write-Verbose "$_ = $($PSBoundParameters[$_])" }
 
 Write-Output "Setting '$VariableName' to '$Value'."
-Write-Host "##vso[task.setvariable variable=$($VariableName);]$Value"
+
+if ($VariableName -eq "Build.BuildNumber")
+{
+    Write-Host "##vso[build.updatebuildnumber;]$Value"
+}
+else
+{
+    Write-Host "##vso[task.setvariable variable=$($VariableName);]$Value"
+}
 
 Write-Host "##vso[task.complete result=Succeeded;]DONE"
