@@ -38,29 +38,35 @@ function searchAndReplace(): string {
     const search = tl.getInput("searchValue");
     const replacement = tl.getInput("replacementValue");
 
-    if (method === "match") {
+    if (method === "basic") {
+        return value.replace(search, replacement);
+    } else {
         const regexOptions = tl.getInput("regexOptions", false);
-        const searchExpression = new RegExp(search, regexOptions ? regexOptions : "");
+        let searchExpression: RegExp;
 
-        const result = value.match(searchExpression);
-        if (!result || result.length === 0) {
-            tl.warning("Found no matches");
-            return "";
+        if (regexOptions) {
+            searchExpression = new RegExp(search, regexOptions);
         } else {
-            if (result.length > 1) {
-                tl.warning("Found multiple matches, setting the first");
+            searchExpression = new RegExp(search);
+        }
+
+        if (method === "match") {
+            const result = value.match(searchExpression);
+            if (!result || result.length === 0) {
+                tl.warning("Found no matches");
+                return "";
+            } else {
+                if (result.length > 1) {
+                    tl.warning("Found multiple matches, setting the first");
+                }
+                return result[0];
             }
-            return result[0];
+        }
+        if (method === "regex") {
+            return value.replace(searchExpression, replacement);
         }
     }
-    if (method === "regex") {
-        const regexOptions = tl.getInput("regexOptions", false);
-        const searchExpression = new RegExp(search, regexOptions ? regexOptions : "");
-
-        return value.replace(searchExpression, replacement);
-    } else {
-        return value.replace(search, replacement);
-    }
+    return value;
 }
 
 function encodeString(): string {
