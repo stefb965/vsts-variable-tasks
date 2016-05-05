@@ -95,7 +95,7 @@
       "label": "Regex Options",
       "helpMarkDown": "",
       "groupName": "Transformation",
-      "visibleRule": "option=searchReplace && searchReplace=regex"
+      "visibleRule": "option=searchReplace && searchReplace!=basic"
     },
 
     {
