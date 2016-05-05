@@ -89,7 +89,10 @@
       "path": "vsts-variable-transform/icon.png"
     },
     {
-      "path": "vsts-variable-transform/node_modules"
+      "path": "vsts-variable-transform/node_modules/q"
+    },
+    {
+      "path": "vsts-variable-transform/node_modules/vsts-task-lib"
     }
   ],
   "contributions": [
