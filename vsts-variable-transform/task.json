@@ -64,7 +64,8 @@
       "helpMarkDown": "",
       "options": {
         "basic": "Basic",
-        "regex": "Regex"
+        "regex": "Regex Replace",
+        "match": "Regex Match"
       },
       "groupName": "Transformation",
       "visibleRule": "option=searchReplace"
@@ -85,7 +86,7 @@
       "label": "Replacement",
       "helpMarkDown": "",
       "groupName": "Transformation",
-      "visibleRule": "option=searchReplace"
+      "visibleRule": "option=searchReplace && searchReplace!=match"
     },
 
     {

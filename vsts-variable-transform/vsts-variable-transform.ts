@@ -38,6 +38,22 @@ function searchAndReplace(): string {
     const search = tl.getInput("searchValue");
     const replacement = tl.getInput("replacementValue");
 
+    if (method === "match") {
+        const regexOptions = tl.getInput("regexOptions", false);
+        const searchExpression = new RegExp(search, regexOptions);
+
+        const result = value.match(searchExpression);
+        switch (result.length) {
+            case 0:
+                tl.warning("Found no matches");
+                return "";
+            case 1:
+                return result[0];
+            default:
+                tl.warning("Found multiple matches, setting the first");
+                return result[0];
+        }
+    }
     if (method === "regex") {
         const regexOptions = tl.getInput("regexOptions", false);
         const searchExpression = new RegExp(search, regexOptions);
