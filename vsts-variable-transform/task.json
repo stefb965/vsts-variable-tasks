@@ -26,18 +26,18 @@
   "inputs": [
     {
       "defaultValue": "",
-      "helpMarkdown": "Variable to set. Only supply the variable name and do not include `$(...)`.",
-      "label": "Output Variable",
-      "name": "variableName",
-      "required": true,
-      "type": "string"
-    },
-    {
-      "defaultValue": "",
       "helpMarkdown": "Input value.",
       "label": "Input Value",
       "name": "value",
       "required": false,
+      "type": "string"
+    },
+    {
+      "defaultValue": "",
+      "helpMarkdown": "Variable to set. Only supply the variable name and do not include `$(...)`.",
+      "label": "Output Variable",
+      "name": "variableName",
+      "required": true,
       "type": "string"
     },
 
@@ -128,7 +128,7 @@
       "visibleRule": "option=decodeString"
     }
   ],
-  "instanceNameFormat": "Transform value and assign to variable: $(VariableName)",
+  "instanceNameFormat": "Transform value '$(value)' and assign to variable: $(variableName)",
   "execution": {
     "Node": {
       "target": "vsts-variable-transform.js",
