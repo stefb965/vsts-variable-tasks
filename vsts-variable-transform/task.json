@@ -1,0 +1,137 @@
+{
+  "id": "9ccfb3bb-7ec0-4626-8599-164b1f95f933",
+  "name": "VariableTransformTask",
+  "friendlyName": "Transform value #{Extension.Tag}#",
+  "description": "Transform value and assign to variable.",
+  "helpMarkDown": "Version: #{Build.BuildNumber}#. [More Information](https://github.com/jessehouwing/vsts-variable-tasks/wiki/)",
+  "category": "Utility",
+  "author": "Jesse Houwing",
+  "version": {
+    "Major": 0,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "minimumAgentVersion": "1.83.0",
+  "groups": [
+    {
+      "name": "Transformation",
+      "displayName": "Transformation",
+      "isExpanded": true
+    }
+  ],
+  "inputs": [
+    {
+      "defaultValue": "",
+      "helpMarkdown": "Variable to set. Only supply the variable name and do not include `$(...)`.",
+      "label": "Variable",
+      "name": "variableName",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "defaultValue": "",
+      "helpMarkdown": "Input value.",
+      "label": "Value",
+      "name": "value",
+      "required": false,
+      "type": "string"
+    },
+
+    {
+      "name": "option",
+      "type": "pickList",
+      "label": "Category",
+      "required": true,
+      "helpMarkDown": "",
+      "options": {
+        "searchReplace": "Search & Replace",
+        "encodeString": "Encode String",
+        "decodeString": "Decode String"
+      },
+      "groupName": "Transformation"
+    },
+
+    {
+      "name": "searchReplace",
+      "type": "pickList",
+      "label": "Method",
+      "required": true,
+      "defaultValue": "basic",
+      "helpMarkDown": "",
+      "options": {
+        "basic": "Basic",
+        "regex": "Regex"
+      },
+      "groupName": "Transformation",
+      "visibleRule": "option=searchReplace"
+    },
+
+    {
+      "name": "searchValue",
+      "type": "multiLine",
+      "label": "Search",
+      "helpMarkDown": "",
+      "groupName": "Transformation",
+      "visibleRule": "option=searchReplace"
+    },
+
+    {
+      "name": "replacementValue",
+      "type": "multiLine",
+      "label": "Replacement",
+      "helpMarkDown": "",
+      "groupName": "Transformation",
+      "visibleRule": "option=searchReplace"
+    },
+
+    {
+      "name": "regexOptions",
+      "type": "string",
+      "label": "Regex Options",
+      "helpMarkDown": "",
+      "groupName": "Transformation",
+      "visibleRule": "option=searchReplace && searchReplace=regex"
+    },
+
+    {
+      "name": "encodeString",
+      "type": "pickList",
+      "label": "Method",
+      "required": true,
+      "helpMarkDown": "",
+      "options": {
+        "base64": "Base 64",
+        "uri": "Uri",
+        "slashes": "Slashes"
+      },
+      "groupName": "Transformation",
+      "visibleRule": "option=encodeString"
+    },
+
+    {
+      "name": "decodeString",
+      "type": "pickList",
+      "label": "Method",
+      "required": true,
+      "helpMarkDown": "",
+      "options": {
+        "base64": "Base 64",
+        "uri": "Uri",
+        "slashes": "Slashes"
+      },
+      "groupName": "Transformation",
+      "visibleRule": "option=decodeString"
+    }
+  ],
+  "instanceNameFormat": "Transform value and assign to variable: $(VariableName)",
+  "execution": {
+    "Node": {
+      "target": "vsts-variable-transform.js",
+      "argumentFormat": ""
+    }
+  }
+}

@@ -58,47 +58,70 @@
     "icons": {
         "default": "extension/images/extension-icon.png"
     },
-    "files": [
-        {
-            "path": "vsts-variable-set/vsts-variable-set.ps1"
-        },
-        {
-            "path": "vsts-variable-set/task.json"
-        },
-        {
-            "path": "vsts-variable-set/icon.png"
-        },
+  "files": [
+    {
+      "path": "vsts-variable-set/vsts-variable-set.ps1"
+    },
+    {
+      "path": "vsts-variable-set/task.json"
+    },
+    {
+      "path": "vsts-variable-set/icon.png"
+    },
 
-        {
-            "path": "vsts-variable-expand/vsts-variable-expand.ps1"
-        },
-        {
-            "path": "vsts-variable-expand/task.json"
-        },
-        {
-            "path": "vsts-variable-expand/icon.png"
-        }
-    ],
-    "contributions": [
-        {
-            "id": "vsts-variable-set",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "vsts-variable-set"
-            }
-        },
-        {
-            "id": "vsts-variable-expand",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "vsts-variable-expand"
-            }
-        }        
-    ]
+    {
+      "path": "vsts-variable-expand/vsts-variable-expand.ps1"
+    },
+    {
+      "path": "vsts-variable-expand/task.json"
+    },
+    {
+      "path": "vsts-variable-expand/icon.png"
+    },
+
+    {
+      "path": "vsts-variable-transform/vsts-variable-transform.js"
+    },
+    {
+      "path": "vsts-variable-transform/task.json"
+    },
+    {
+      "path": "vsts-variable-transform/icon.png"
+    },
+    {
+      "path": "vsts-variable-transform/node_modules"
+    }
+  ],
+  "contributions": [
+    {
+      "id": "vsts-variable-set",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "vsts-variable-set"
+      }
+    },
+    {
+      "id": "vsts-variable-expand",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "vsts-variable-expand"
+      }
+    },
+    {
+      "id": "vsts-variable-transform",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "vsts-variable-transform"
+      }
+    }
+  ]
 }

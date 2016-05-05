@@ -16,8 +16,9 @@
         "Release"
     ],
     "minimumAgentVersion": "1.83.0",
-    "groups": [
-    ],
+  "groups": [
+   
+  ],
     "inputs": [
         {
             "defaultValue": "*",
@@ -29,11 +30,13 @@
         }
     ],
     "instanceNameFormat": "Expand variables: '$(VariableNames)'",
-    "execution": {
-        "PowerShell": {
-            "target": "$(currentDirectory)\\vsts-variable-expand.ps1",
-            "argumentFormat": "",
-            "workingDirectory": "$(currentDirectory)"
-        }
+  "execution": {
+    "PowerShell": {
+      "target": "$(currentDirectory)\\vsts-variable-expand.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
     }
+  }
+
+
 }
