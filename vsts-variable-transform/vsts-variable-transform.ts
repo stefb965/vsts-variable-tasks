@@ -92,7 +92,7 @@ function decodeString(): string {
             const buffer = new Buffer(value, "base64");
             return buffer.toString();
         case "slashes":
-            return JSON.parse(`"${value}"`).toString();
+            return JSON.parse(`"${value}"`) as string;
     }
 
     return "NOT IMPLEMENTED";
