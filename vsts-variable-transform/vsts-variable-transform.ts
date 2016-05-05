@@ -40,7 +40,7 @@ function searchAndReplace(): string {
 
     if (method === "match") {
         const regexOptions = tl.getInput("regexOptions", false);
-        const searchExpression = new RegExp(search, regexOptions);
+        const searchExpression = new RegExp(search, regexOptions ? regexOptions : "");
 
         const result = value.match(searchExpression);
         if (!result || result.length === 0) {
@@ -55,7 +55,7 @@ function searchAndReplace(): string {
     }
     if (method === "regex") {
         const regexOptions = tl.getInput("regexOptions", false);
-        const searchExpression = new RegExp(search, regexOptions);
+        const searchExpression = new RegExp(search, regexOptions ? regexOptions : "");
 
         return value.replace(searchExpression, replacement);
     } else {
