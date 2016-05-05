@@ -2,11 +2,11 @@
 import tl = require("vsts-task-lib/task");
 
 
-const method = tl.getInput("method", true);
+const option = tl.getInput("option", true);
 const variable = tl.getInput("variableName", true);
 let output = "";
 
-switch (method) {
+switch (option) {
     case "searchReplace":
         output = searchAndReplace();
         break;
