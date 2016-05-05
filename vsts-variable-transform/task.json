@@ -107,6 +107,7 @@
       "options": {
         "base64": "Base 64",
         "uri": "Uri",
+        "uriComponent": "Uri Component",
         "slashes": "Slashes"
       },
       "groupName": "Transformation",
@@ -122,6 +123,7 @@
       "options": {
         "base64": "Base 64",
         "uri": "Uri",
+        "uriComponent": "Uri Component",
         "slashes": "Slashes"
       },
       "groupName": "Transformation",

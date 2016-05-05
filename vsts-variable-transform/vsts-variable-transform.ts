@@ -76,11 +76,13 @@ function encodeString(): string {
     switch (method) {
         case "uri":
             return encodeURI(value);
+        case "uriComponent":
+            return encodeURIComponent(value);
         case "base64":
             const buffer = new Buffer(value);
             return buffer.toString("base64");
         case "slashes":
-            return JSON.stringify(value).slice(1, -1);
+            return addSlashes(value);
     }
 
     return "NOT IMPLEMENTED";
@@ -93,12 +95,35 @@ function decodeString(): string {
     switch (method) {
         case "uri":
             return decodeURI(value);
+        case "uriComponent":
+            return decodeURIComponent(value);
         case "base64":
             const buffer = new Buffer(value, "base64");
             return buffer.toString();
         case "slashes":
-            return JSON.parse(`"${value}"`) as string;
+            return stripSlashes(value);
     }
 
     return "NOT IMPLEMENTED";
+}
+
+function stripSlashes(str : string) : string {
+    return str.replace(/\\(.?)/g, (s, n1) => {
+        switch (n1) {
+        case "\\":
+            return "\\";
+        case "0":
+            return "\u0000";
+        case "":
+            return "";
+        default:
+            return n1;
+        }
+    });
+}
+
+function addSlashes(str : string) : string {
+    return (str + "")
+        .replace(/[\\"']/g, "\\$&")
+        .replace(/\u0000/g, "\\0");
 }
