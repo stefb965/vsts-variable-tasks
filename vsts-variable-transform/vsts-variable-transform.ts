@@ -68,7 +68,7 @@ function decodeString(): string {
         case "uri":
             return decodeURI(value);
         case "base64":
-            const buffer = new Buffer(value, 'base64');
+            const buffer = new Buffer(value, "base64");
             return buffer.toString();
         case "slashes":
             return JSON.parse(`"${value}"`).toString();

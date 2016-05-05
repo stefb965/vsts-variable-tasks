@@ -2,11 +2,11 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
-    "outDir": "../dist",
-    "rootDir": "../"
+    "outDir": ".",
+    "rootDir": "."
   },
   "exclude": [
     "typings",
-    "Common"
+    "node_modules/typings"
   ]
 }

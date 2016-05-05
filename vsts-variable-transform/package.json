@@ -13,5 +13,8 @@
     "initdev:npm": "npm install",
     "initdev:typings": "typings install",
     "initdev": "npm run initdev:npm  && npm run initdev:typings "
+  },
+  "devDependencies": {
+    "typings": "^0.8.1"
   }
 }
