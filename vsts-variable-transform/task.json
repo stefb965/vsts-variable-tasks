@@ -75,6 +75,7 @@
         "decodeString": "Decode"
       },
       "groupName": "Transformation",
+      "defaultValue":  "encodeString",
       "visibleRule": "transformAction != none"
     },
     {
@@ -87,6 +88,7 @@
         "beforeManipulation": "Before",
         "afterManipulation": "After manipulation"
       },
+      "defaultValue": "afterManipulation",
       "visibleRule": "transformAction != none",
       "groupName": "Transformation"
     },
@@ -235,8 +237,8 @@
       "helpMarkDown": "",
       "groupName": "Manipulation",
       "options": {
-        "upper": "upper",
-        "lower": "lower"
+        "toUpper": "Upper",
+        "toLower": "Lower Case"
       },
       "visibleRule": "casing=true"
     },
@@ -254,6 +256,7 @@
       "label": "Type",
       "required": true,
       "helpMarkDown": "",
+      "defaultValue": "left",
       "groupName": "Manipulation",
       "options": {
         "left": "Left",
