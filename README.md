@@ -40,6 +40,41 @@ You can use the value of other build variables to setup the value.
 > * *Variablename*: `Build.DropLocation`
 > * *Value*: `\\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber)`
 
+By assigning to the `Build.BuildNumber` variable, the build number of the Build will be updated/overwritten.
+
+# Transform value and assign to Variable
+If you need to do more advanced transformations of your values, use the transform task. You can use it to encode/decode the value and apply a number of simpe string manipulations, including Search & Replace, Change Case, Trim, Pad etc.
+
+You can use the value of other build variables to setup the value.
+
+> **Transform: 'your value here' and assign to Variable: VariableName'** 
+> 
+> * *Input Value*: `\\share\drops\$(Build.DefinitionName)\$(Build.BuildNumber)`
+> * *Variablename*: `Build.DropLocation`
+
+By assigning to the `Build.BuildNumber` variable, the build number of the Build will be updated/overwritten.
+
+You can apply the following manipulations (they'll be exectuted in the specified order):
+
+> **Manipulation** 
+> 
+> * [x] *Search & Replace*
+>  * Use: `Basic`
+>  * Search: `$Build.DefinitionName`
+>  * Replacement: `%%Placeholder%%`
+> * [x] Trim
+> * [ ] Slice
+> * [ ] Substring
+> * [ ] Change Case
+> * [ ] Pad
+
+And finally you can transform (encode/decode) the string using:
+
+> * Base64
+> * Uri
+> * UriComponent
+> * AddSlashes / StripSlashes
+
 # Preview Notice
 
 These tasks are currently in preview.
@@ -47,3 +82,5 @@ These tasks are currently in preview.
 # Documentation
 
 Please check the [Wiki](https://github.com/jessehouwing/vsts-variable-tasks/wiki).
+
+If you like this extension, please leave a review and feedback. If you'd have suggestions or an issue, please [file an issue to give me a chance to fix it](https://github.com/jessehouwing/vsts-variable-tasks/issues).

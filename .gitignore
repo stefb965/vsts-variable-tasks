@@ -240,3 +240,8 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+/dist/vsts-variable-transform
+/vsts-variable-transform/typings
+/vsts-variable-transform/vsts-variable-transform.js.map
+/vsts-variable-transform/vsts-variable-transform.js
+/vsts-variable-set/typings
