@@ -164,7 +164,7 @@
     },
     {
       "name": "sliceLeft",
-      "type": "int",
+      "type": "string",
       "required": true,
       "label": "Left",
       "helpMarkDown": "",
@@ -173,7 +173,7 @@
     },
     {
       "name": "sliceRight",
-      "type": "int",
+      "type": "string",
       "required": true,
       "label": "Right",
       "helpMarkDown": "",
