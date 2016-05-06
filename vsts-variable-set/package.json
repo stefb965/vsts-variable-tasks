@@ -1,7 +1,7 @@
 {
-  "name": "vsts-variable-transform",
+  "name": "vsts-variable-set",
   "version": "0.0.0",
-  "description": "Transform Variable",
+  "description": "Set Variable",
   "author": {
     "name": "Jesse Houwing",
     "email": "jesse.houwing@gmail.com"
