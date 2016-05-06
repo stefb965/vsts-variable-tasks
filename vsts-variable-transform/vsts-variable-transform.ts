@@ -1,10 +1,10 @@
 ﻿///<reference path="./typings/main.d.ts" />
 import tl = require("vsts-task-lib/task");
 
-const transformationAction = tl.getInput("transformationAction", true);
+const transformAction = tl.getInput("transformAction", true);
 let value = tl.getInput("value");
 
-if (transformationAction !== "none") {
+if (transformAction !== "none") {
     const pointInTime = tl.getInput("pointInTime", true);
     if (pointInTime === "beforeManipulation") {
         value = applyManipulations(value);
@@ -165,7 +165,7 @@ function searchAndReplace(value: string): string {
 }
 
 function encodeString(value: string): string {
-    const method = tl.getInput("encodeString", true);
+    const method = tl.getInput("transformAction", true);
 
     switch (method) {
         case "uri":
@@ -183,7 +183,7 @@ function encodeString(value: string): string {
 }
 
 function decodeString(value: string): string {
-    const method = tl.getInput("encodeString", true);
+    const method = tl.getInput("transformAction", true);
 
     switch (method) {
         case "uri":
