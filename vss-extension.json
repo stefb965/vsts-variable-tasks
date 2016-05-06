@@ -63,6 +63,15 @@
       "path": "vsts-variable-set/vsts-variable-set.ps1"
     },
     {
+      "path": "vsts-variable-set/vsts-variable-set.js"
+    },
+    {
+      "path": "vsts-variable-set/node_modules/q"
+    },
+    {
+      "path": "vsts-variable-set/node_modules/vsts-task-lib"
+    },
+    {
       "path": "vsts-variable-set/task.json"
     },
     {
