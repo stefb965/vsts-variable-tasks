@@ -129,7 +129,7 @@ function applyManipulations(value: string): string {
 }
 
 function searchAndReplace(value: string): string {
-    const method = tl.getInput("searchReplaceType", true);
+    const method = tl.getInput("searchReplaceMethod", true);
     const search = tl.getInput("searchValue");
     const replacement = tl.getInput("replacementValue");
 

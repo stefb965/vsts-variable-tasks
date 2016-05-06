@@ -129,7 +129,7 @@
       "label": "Replacement",
       "helpMarkDown": "",
       "groupName": "Manipulation",
-      "visibleRule": "searchReplace=true & searchReplaceType!=match"
+      "visibleRule": "searchReplace=true & searchReplaceMethod!=match"
     },
 
     {
@@ -138,7 +138,7 @@
       "label": "Regex Options",
       "helpMarkDown": "",
       "groupName": "Manipulation",
-      "visibleRule": "searchReplace=true & searchReplaceType!=basic"
+      "visibleRule": "searchReplace=true & searchReplaceMethod!=basic"
     },
 
 
