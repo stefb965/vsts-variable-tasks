@@ -129,7 +129,7 @@
       "label": "Replacement",
       "helpMarkDown": "",
       "groupName": "Manipulation",
-      "visibleRule": "searchReplace=true & searchReplaceMethod!=match"
+      "visibleRule": "searchReplace=true && searchReplaceMethod!=match"
     },
 
     {
