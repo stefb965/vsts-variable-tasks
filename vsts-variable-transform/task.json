@@ -204,7 +204,7 @@
     },
     {
       "name": "substringStart",
-      "type": "int",
+      "type": "string",
       "required": true,
       "label": "Start",
       "helpMarkDown": "",
@@ -213,7 +213,7 @@
     },
     {
       "name": "substringLength",
-      "type": "int",
+      "type": "string",
       "required": false,
       "label": "Length",
       "helpMarkDown": "",
@@ -271,7 +271,7 @@
     },
     {
       "name": "padLength",
-      "type": "int",
+      "type": "string",
       "required": true,
       "label": "Length",
       "helpMarkDown": "",
