@@ -53,6 +53,7 @@
       "label": "Action",
       "required": true,
       "helpMarkDown": "",
+      "defaultValue": "none",
       "options": {
         "none": "None",
         "base64": "Base 64",
@@ -66,7 +67,7 @@
     {
       "name": "encodeOrDecode",
       "type": "radio",
-      "label": "Category",
+      "label": "Direction",
       "required": true,
       "helpMarkDown": "",
       "options": {
@@ -93,7 +94,7 @@
 
     {
       "name": "searchReplace",
-      "type": "bool",
+      "type": "boolean",
       "label": "Search and Replace",
       "helpMarkDown": "",
       "groupName": "Manipulation"
@@ -144,47 +145,11 @@
 
 
 
-    {
-      "name": "pad",
-      "type": "bool",
-      "label": "Pad",
-      "helpMarkDown": "",
-      "groupName": "Manipulation"
-    },
-    {
-      "name": "padType",
-      "type": "radio",
-      "label": "Type",
-      "required": true,
-      "helpMarkDown": "",
-      "groupName": "Manipulation",
-      "options": {
-        "left": "Left",
-        "right": "Right"
-      },
-      "visibleRule": "pad=true"
-    },
-    {
-      "name": "padChar",
-      "type": "string",
-      "label": "Character",
-      "helpMarkDown": "",
-      "groupName": "Manipulation",
-      "visibleRule": "pad=true"
-    },
-    {
-      "name": "padLength",
-      "type": "int",
-      "required": true,
-      "label": "Length",
-      "helpMarkDown": "",
-      "groupName": "Manipulation",
-      "visibleRule": "pad=true"
-    },
+
 
     {
       "name": "trim",
-      "type": "bool",
+      "type": "boolean",
       "label": "Trim",
       "helpMarkDown": "",
       "groupName": "Manipulation"
@@ -192,7 +157,8 @@
 
     {
       "name": "slice",
-      "type": "Slice",
+      "type": "boolean",
+      "label": "Slice",
       "helpMarkDown": "",
       "groupName": "Manipulation"
     },
@@ -206,7 +172,7 @@
       "visibleRule": "slice=true"
     },
     {
-      "name": "spliceRight",
+      "name": "sliceRight",
       "type": "int",
       "required": true,
       "label": "Right",
@@ -217,7 +183,8 @@
 
     {
       "name": "substring",
-      "type": "Substring",
+      "label": "Substring",
+      "type": "boolean",
       "helpMarkDown": "",
       "groupName": "Manipulation"
     },
@@ -256,7 +223,7 @@
 
     {
       "name": "casing",
-      "type": "bool",
+      "type": "boolean",
       "label": "Change Case",
       "helpMarkDown": "",
       "groupName": "Manipulation"
@@ -272,9 +239,45 @@
         "lower": "lower"
       },
       "visibleRule": "casing=true"
+    },
+
+    {
+      "name": "pad",
+      "type": "boolean",
+      "label": "Pad",
+      "helpMarkDown": "",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "padType",
+      "type": "radio",
+      "label": "Type",
+      "required": true,
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "options": {
+        "left": "Left",
+        "right": "Right"
+      },
+      "visibleRule": "pad=true"
+    },
+    {
+      "name": "padChar",
+      "type": "string",
+      "label": "Character",
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "visibleRule": "pad=true"
+    },
+    {
+      "name": "padLength",
+      "type": "int",
+      "required": true,
+      "label": "Length",
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "visibleRule": "pad=true"
     }
-
-
   ],
   "instanceNameFormat": "Transform value '$(value)' and assign to variable: $(variableName)",
   "execution": {
