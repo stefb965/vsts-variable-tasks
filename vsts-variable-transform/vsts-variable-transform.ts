@@ -91,9 +91,9 @@ function applyManipulations(value: string): string {
     }
 
     if (tl.getBoolInput("casing", false)) {
-        const caseingType = tl.getInput("casingType", true);
+        const casingType = tl.getInput("casingType", true);
 
-        switch (caseingType) {
+        switch (casingType) {
             case "toUpper":
                 value = value.toUpperCase();
                 break;
@@ -118,10 +118,11 @@ function applyManipulations(value: string): string {
         const padBase = Array(padLength).join(padCharacter);
         switch (padType) {
             case "left":
-                value = (padBase + value).slice(0, -padLength);
+                value = (padBase + value).slice(value.length);
                 break;
             case "right":
                 value = (value + padBase).substring(0, padLength);
+                break;
         }
     }
 
