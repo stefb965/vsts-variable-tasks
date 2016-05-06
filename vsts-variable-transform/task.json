@@ -18,10 +18,16 @@
   "minimumAgentVersion": "1.83.0",
   "groups": [
     {
+      "name": "Manipulation",
+      "displayName": "Manipulation",
+      "isExpanded": true
+    },
+    {
       "name": "Transformation",
       "displayName": "Transformation",
       "isExpanded": true
     }
+
   ],
   "inputs": [
     {
@@ -42,21 +48,58 @@
     },
 
     {
-      "name": "option",
+      "name": "transformAction",
       "type": "pickList",
-      "label": "Category",
+      "label": "Action",
       "required": true,
       "helpMarkDown": "",
       "options": {
-        "searchReplace": "Search & Replace",
-        "encodeString": "Encode String",
-        "decodeString": "Decode String"
+        "none": "None",
+        "base64": "Base 64",
+        "uri": "Uri",
+        "uriComponent": "Uri Component",
+        "slashes": "Slashes"
       },
       "groupName": "Transformation"
     },
 
     {
+      "name": "encodeOrDecode",
+      "type": "radio",
+      "label": "Category",
+      "required": true,
+      "helpMarkDown": "",
+      "options": {
+        "encodeString": "Encode",
+        "decodeString": "Decode"
+      },
+      "groupName": "Transformation",
+      "visibleRule": "transformAction != none"
+    },
+    {
+      "name": "pointInTime",
+      "type": "radio",
+      "label": "Apply Transformation",
+      "required": true,
+      "helpMarkDown": "",
+      "options": {
+        "beforeManipulation": "Before",
+        "afterManipulation": "After manipulation"
+      },
+      "visibleRule": "transformAction != none",
+      "groupName": "Transformation"
+    },
+
+
+    {
       "name": "searchReplace",
+      "type": "bool",
+      "label": "Search and Replace",
+      "helpMarkDown": "",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "searchReplaceMethod",
       "type": "pickList",
       "label": "Method",
       "required": true,
@@ -67,8 +110,8 @@
         "regex": "Regex Replace",
         "match": "Regex Match"
       },
-      "groupName": "Transformation",
-      "visibleRule": "option=searchReplace"
+      "groupName": "Manipulation",
+      "visibleRule": "searchReplace=true"
     },
 
     {
@@ -76,8 +119,8 @@
       "type": "multiLine",
       "label": "Search",
       "helpMarkDown": "",
-      "groupName": "Transformation",
-      "visibleRule": "option=searchReplace"
+      "groupName": "Manipulation",
+      "visibleRule": "searchReplace=true"
     },
 
     {
@@ -85,8 +128,8 @@
       "type": "multiLine",
       "label": "Replacement",
       "helpMarkDown": "",
-      "groupName": "Transformation",
-      "visibleRule": "option=searchReplace && searchReplace!=match"
+      "groupName": "Manipulation",
+      "visibleRule": "searchReplace=true & searchReplaceType!=match"
     },
 
     {
@@ -94,41 +137,144 @@
       "type": "string",
       "label": "Regex Options",
       "helpMarkDown": "",
-      "groupName": "Transformation",
-      "visibleRule": "option=searchReplace && searchReplace!=basic"
+      "groupName": "Manipulation",
+      "visibleRule": "searchReplace=true & searchReplaceType!=basic"
+    },
+
+
+
+
+    {
+      "name": "pad",
+      "type": "bool",
+      "label": "Pad",
+      "helpMarkDown": "",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "padType",
+      "type": "radio",
+      "label": "Type",
+      "required": true,
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "options": {
+        "left": "Left",
+        "right": "Right"
+      },
+      "visibleRule": "pad=true"
+    },
+    {
+      "name": "padChar",
+      "type": "string",
+      "label": "Character",
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "visibleRule": "pad=true"
+    },
+    {
+      "name": "padLength",
+      "type": "int",
+      "required": true,
+      "label": "Length",
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "visibleRule": "pad=true"
     },
 
     {
-      "name": "encodeString",
-      "type": "pickList",
-      "label": "Method",
-      "required": true,
+      "name": "trim",
+      "type": "bool",
+      "label": "Trim",
       "helpMarkDown": "",
-      "options": {
-        "base64": "Base 64",
-        "uri": "Uri",
-        "uriComponent": "Uri Component",
-        "slashes": "Slashes"
-      },
-      "groupName": "Transformation",
-      "visibleRule": "option=encodeString"
+      "groupName": "Manipulation"
     },
 
     {
-      "name": "decodeString",
-      "type": "pickList",
-      "label": "Method",
-      "required": true,
+      "name": "slice",
+      "type": "Slice",
       "helpMarkDown": "",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "sliceLeft",
+      "type": "int",
+      "required": true,
+      "label": "Left",
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "visibleRule": "slice=true"
+    },
+    {
+      "name": "spliceRight",
+      "type": "int",
+      "required": true,
+      "label": "Right",
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "visibleRule": "slice=true"
+    },
+
+    {
+      "name": "substring",
+      "type": "Substring",
+      "helpMarkDown": "",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "substringType",
+      "type": "radio",
+      "label": "Type",
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "default": "substring",
       "options": {
-        "base64": "Base 64",
-        "uri": "Uri",
-        "uriComponent": "Uri Component",
-        "slashes": "Slashes"
+        "substring": "Substring",
+        "left": "Left",
+        "right": "Right"
       },
-      "groupName": "Transformation",
-      "visibleRule": "option=decodeString"
+      "visibleRule": "substring=true"
+    },
+    {
+      "name": "substringStart",
+      "type": "int",
+      "required": true,
+      "label": "Start",
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "visibleRule": "substring=true & substringType=substring"
+    },
+    {
+      "name": "substringLength",
+      "type": "int",
+      "required": true,
+      "label": "Length",
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "visibleRule": "substring=true"
+    },
+
+    {
+      "name": "casing",
+      "type": "bool",
+      "label": "Change Case",
+      "helpMarkDown": "",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "casingType",
+      "type": "radio",
+      "label": "Type",
+      "helpMarkDown": "",
+      "groupName": "Manipulation",
+      "options": {
+        "upper": "upper",
+        "lower": "lower"
+      },
+      "visibleRule": "casing=true"
     }
+
+
   ],
   "instanceNameFormat": "Transform value '$(value)' and assign to variable: $(variableName)",
   "execution": {

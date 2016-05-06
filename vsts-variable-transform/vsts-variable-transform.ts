@@ -1,40 +1,135 @@
 ﻿///<reference path="./typings/main.d.ts" />
 import tl = require("vsts-task-lib/task");
 
+const transformationAction = tl.getInput("transformationAction", true);
+let value = tl.getInput("value");
 
-const option = tl.getInput("option", true);
-const variable = tl.getInput("variableName", true);
-let output = "";
+if (transformationAction !== "none") {
+    const pointInTime = tl.getInput("pointInTime", true);
+    if (pointInTime === "beforeManipulation") {
+        value = applyManipulations(value);
+    }
 
-switch (option) {
-    case "searchReplace":
-        output = searchAndReplace();
-        break;
+    const option = tl.getInput("encodeOrDecode", false);
+    switch (option) {
+        case "encodeString":
+            value = encodeString(value);
+            break;
 
-    case "encodeString":
-        output = encodeString();
-        break;
+        case "decodeString":
+            value = decodeString(value);
+            break;
+    }
 
-    case "decodeString":
-        output = decodeString();
-        break;
+    if (pointInTime === "afterManipulation") {
+        value = applyManipulations(value);
+    }
+} else {
+    value = applyManipulations(value);
 }
+
+const variable = tl.getInput("variableName", true);
 
 if (variable.search(/^Build[._]BuildNumber$/i) > 0) {
-    tl.command("build.updatebuildnumber", null, output);
-    tl._writeLine(`Set buildnumber to: ${output}`);
-    tl.setResult(tl.TaskResult.Succeeded, `Set buildnumber to: ${output}`);
+    tl.command("build.updatebuildnumber", null, value);
+    tl._writeLine(`Set buildnumber to: ${value}`);
+    tl.setResult(tl.TaskResult.Succeeded, `Set buildnumber to: ${value}`);
 } else {
-    tl.setVariable(variable, output);
-    tl._writeLine(`Set ${variable} to: ${output}`);
-    tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${output}`);
+    tl.setVariable(variable, value);
+    tl._writeLine(`Set ${variable} to: ${value}`);
+    tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${value}`);
 }
 
+function applyManipulations(value: string): string {
+    if (tl.getBoolInput("searchAndReplace", false)) {
+        value = searchAndReplace(value);
+    }
 
+    if (tl.getBoolInput("trim", false)) {
+        value = value.trim();
+    }
 
-function searchAndReplace(): string {
-    const method = tl.getInput("searchReplace", true);
-    const value = tl.getInput("value");
+    if (tl.getBoolInput("slice", false)) {
+        const left = tl.getInput("sliceLeft", true);
+        const right = tl.getInput("sliceRight", true);
+
+        if (right) {
+            value = value.slice(+left, +right);
+        } else {
+            value = value.slice(+left);
+        }
+    }
+
+    if (tl.getBoolInput("substring", false)) {
+        const substringType = tl.getInput("substringType", true);
+        let length: string;
+
+        switch (substringType) {
+            case "substring":
+                const start = tl.getInput("substringStart", true);
+                length = tl.getInput("substringLength", false);
+
+                if (length) {
+                    value = value.substring(+start, +length);
+                } else {
+                    value = value.substring(+start);
+                }
+                break;
+            case "left":
+                length = tl.getInput("substringLength", true);
+                if (value.length < +length) {
+                    value = value.substring(0, +length);
+                }
+                break;
+            case "right":
+                length = tl.getInput("substringLength", true);
+                if (value.length < +length) {
+                    value = value.substring(value.length - +length);
+                }
+                break;
+       }
+    }
+
+    if (tl.getBoolInput("casing", false)) {
+        const caseingType = tl.getInput("casingType", true);
+
+        switch (caseingType) {
+            case "toUpper":
+                value = value.toUpperCase();
+                break;
+            case "toLower":
+                value = value.toLowerCase();
+                break;
+        }
+    }
+
+    if (tl.getBoolInput("pad", false)) {
+        const padType = tl.getInput("padType", true);
+        let padCharacter = tl.getInput("padCharacter", true);
+        if (!padCharacter) {
+            padCharacter = " ";
+        }
+        else if (padCharacter.length !== 1) {
+            tl._writeError("More than one padding character specified.");
+            tl.exit(-1);
+        }
+
+        const padLength = +tl.getInput("padLength", true);
+        const padBase = Array(padLength).join(padCharacter);
+        switch (padType) {
+            case "left":
+                value = (padBase + value).slice(0, -padLength);
+                break;
+            case "right":
+                value = (value + padBase).substring(0, padLength);
+        }
+    }
+
+    return value;
+}
+
+function searchAndReplace(value: string): string {
+    const method = tl.getInput("searchReplaceType", true);
     const search = tl.getInput("searchValue");
     const replacement = tl.getInput("replacementValue");
 
@@ -69,9 +164,8 @@ function searchAndReplace(): string {
     return value;
 }
 
-function encodeString(): string {
+function encodeString(value: string): string {
     const method = tl.getInput("encodeString", true);
-    const value = tl.getInput("value");
 
     switch (method) {
         case "uri":
@@ -88,9 +182,8 @@ function encodeString(): string {
     return "NOT IMPLEMENTED";
 }
 
-function decodeString(): string {
+function decodeString(value: string): string {
     const method = tl.getInput("encodeString", true);
-    const value = tl.getInput("value");
 
     switch (method) {
         case "uri":
@@ -107,7 +200,7 @@ function decodeString(): string {
     return "NOT IMPLEMENTED";
 }
 
-function stripSlashes(str : string) : string {
+function stripSlashes(str: string): string {
     return str.replace(/\\(.?)/g, (s, n1) => {
         switch (n1) {
             case "\\":
@@ -122,7 +215,7 @@ function stripSlashes(str : string) : string {
     });
 }
 
-function addSlashes(str : string) : string {
+function addSlashes(str: string): string {
     return str.replace(/[\\"']/g, "\\$&")
               .replace(/\u0000/g, "\\0");
 }
