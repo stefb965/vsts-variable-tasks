@@ -46,7 +46,7 @@ if (variable.search(/^Build[._]BuildNumber$/i) > 0) {
 }
 
 function applyManipulations(value: string): string {
-    if (tl.getBoolInput("searchAndReplace", false)) {
+    if (tl.getBoolInput("searchReplace", false)) {
         tl.debug("Applying selected Search & Replace.");
         value = searchAndReplace(value);
     }
