@@ -5,11 +5,14 @@ const transformAction = tl.getInput("transformAction", true);
 let value = tl.getInput("value");
 
 if (transformAction !== "none") {
+    tl.debug("Transformation selected.");
     const pointInTime = tl.getInput("pointInTime", true);
     if (pointInTime === "beforeManipulation") {
+        tl.debug("Applying selected manipulations.");
         value = applyManipulations(value);
     }
 
+    tl.debug("Applying selected transformation.");
     const option = tl.getInput("encodeOrDecode", false);
     switch (option) {
         case "encodeString":
@@ -22,9 +25,11 @@ if (transformAction !== "none") {
     }
 
     if (pointInTime === "afterManipulation") {
+        tl.debug("Applying selected manipulations.");
         value = applyManipulations(value);
     }
 } else {
+    tl.debug("Applying selected manipulations.");
     value = applyManipulations(value);
 }
 
@@ -42,14 +47,17 @@ if (variable.search(/^Build[._]BuildNumber$/i) > 0) {
 
 function applyManipulations(value: string): string {
     if (tl.getBoolInput("searchAndReplace", false)) {
+        tl.debug("Applying selected Search & Replace.");
         value = searchAndReplace(value);
     }
 
     if (tl.getBoolInput("trim", false)) {
+        tl.debug("Applying selected Trim.");
         value = value.trim();
     }
 
     if (tl.getBoolInput("slice", false)) {
+        tl.debug("Applying selected Slice.");
         const left = tl.getInput("sliceLeft", true);
         const right = tl.getInput("sliceRight", true);
 
@@ -61,6 +69,7 @@ function applyManipulations(value: string): string {
     }
 
     if (tl.getBoolInput("substring", false)) {
+        tl.debug("Applying selected Substring.");
         const substringType = tl.getInput("substringType", true);
         let length: string;
 
@@ -91,6 +100,7 @@ function applyManipulations(value: string): string {
     }
 
     if (tl.getBoolInput("casing", false)) {
+        tl.debug("Applying selected Change Case.");
         const casingType = tl.getInput("casingType", true);
 
         switch (casingType) {
@@ -104,6 +114,7 @@ function applyManipulations(value: string): string {
     }
 
     if (tl.getBoolInput("pad", false)) {
+        tl.debug("Applying selected Pad.");
         const padType = tl.getInput("padType", true);
         let padCharacter = tl.getInput("padChar", false);
         if (!padCharacter) {
