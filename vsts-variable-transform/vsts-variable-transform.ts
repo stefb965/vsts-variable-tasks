@@ -105,7 +105,7 @@ function applyManipulations(value: string): string {
 
     if (tl.getBoolInput("pad", false)) {
         const padType = tl.getInput("padType", true);
-        let padCharacter = tl.getInput("padCharacter", true);
+        let padCharacter = tl.getInput("padChar", false);
         if (!padCharacter) {
             padCharacter = " ";
         }
