@@ -138,7 +138,7 @@
       "label": "Regex Options",
       "helpMarkDown": "",
       "groupName": "Manipulation",
-      "visibleRule": "searchReplace=true & searchReplaceMethod!=basic"
+      "visibleRule": "searchReplace=true && searchReplaceMethod!=basic"
     },
 
 
@@ -242,12 +242,12 @@
       "label": "Start",
       "helpMarkDown": "",
       "groupName": "Manipulation",
-      "visibleRule": "substring=true & substringType=substring"
+      "visibleRule": "substring=true && substringType=substring"
     },
     {
       "name": "substringLength",
       "type": "int",
-      "required": true,
+      "required": false,
       "label": "Length",
       "helpMarkDown": "",
       "groupName": "Manipulation",
