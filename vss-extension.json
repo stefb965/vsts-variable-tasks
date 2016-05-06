@@ -66,9 +66,6 @@
       "path": "vsts-variable-set/vsts-variable-set.js"
     },
     {
-      "path": "vsts-variable-set/node_modules/q"
-    },
-    {
       "path": "vsts-variable-set/node_modules/vsts-task-lib"
     },
     {
@@ -96,9 +93,6 @@
     },
     {
       "path": "vsts-variable-transform/icon.png"
-    },
-    {
-      "path": "vsts-variable-transform/node_modules/q"
     },
     {
       "path": "vsts-variable-transform/node_modules/vsts-task-lib"
