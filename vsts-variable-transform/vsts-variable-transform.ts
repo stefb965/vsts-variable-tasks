@@ -2,7 +2,7 @@
 import tl = require("vsts-task-lib/task");
 
 const transformAction = tl.getInput("transformAction", true);
-let value = tl.getInput("value");
+let value = tl.getInput("value") || "";
 
 if (transformAction !== "none") {
     tl.debug("Transformation selected.");
@@ -142,8 +142,8 @@ function applyManipulations(value: string): string {
 
 function searchAndReplace(value: string): string {
     const method = tl.getInput("searchReplaceMethod", true);
-    const search = tl.getInput("searchValue");
-    const replacement = tl.getInput("replacementValue");
+    const search = tl.getInput("searchValue") || "";
+    const replacement = tl.getInput("replacementValue") || "";
 
     if (method === "basic") {
         return value.replace(search, replacement);
