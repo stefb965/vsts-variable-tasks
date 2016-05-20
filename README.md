@@ -1,6 +1,10 @@
 [![Build Status](https://jessehouwing.visualstudio.com/DefaultCollection/_apis/public/build/definitions/4fb9b911-ce2e-4020-a507-3ca9adb2c8ac/32/badge)](https://jessehouwing.visualstudio.com/DefaultCollection/vsts-variable-tasks/_build?definitionId=32&_a=completed) [![Join the chat at https://gitter.im/jessehouwing/vsts-variable-tasks](https://badges.gitter.im/jessehouwing/vsts-variable-tasks.svg)](https://gitter.im/jessehouwing/vsts-variable-tasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Release Notes
+> **20-5-2016**
+
+> - Removed: Preview flag
+
 > **19-5-2016**
 
 > - Fixed: Replace with "" would result in "nullOriginalValue"
@@ -82,10 +86,6 @@ And finally you can transform (encode/decode) the string using:
 > * Uri
 > * UriComponent
 > * AddSlashes / StripSlashes
-
-# Preview Notice
-
-These tasks are currently in preview.
 
 # Documentation
 
