@@ -46,7 +46,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="icon.png" />
-    <Content Include="package.json" />
     <Content Include="ps_modules\VstsTaskSdk\FindFunctions.ps1" />
     <Content Include="ps_modules\VstsTaskSdk\InputFunctions.ps1" />
     <Content Include="ps_modules\VstsTaskSdk\lib.json" />
@@ -70,13 +69,7 @@
     <Content Include="ps_modules\VstsTaskSdk\VstsTaskSdk.psd1" />
     <Content Include="ps_modules\VstsTaskSdk\VstsTaskSdk.psm1" />
     <Content Include="task.json" />
-    <Content Include="tsconfig.json" />
-    <Content Include="tslint.json" />
-    <Content Include="typings.json" />
     <Content Include="vsts-variable-expand.v3.ps1" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="vsts-variable-expand.ts" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="vsts-variable-expand.v1.ps1" />

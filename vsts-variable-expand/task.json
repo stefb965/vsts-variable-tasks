@@ -31,6 +31,11 @@
   ],
   "instanceNameFormat": "Expand variables: '$(VariableNames)' on agent version 1.x",
   "execution": {
+    "PowerShell3": {
+      "target": "$(currentDirectory)\\vsts-variable-expand.v3.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    },
     "PowerShell": {
       "target": "$(currentDirectory)\\vsts-variable-expand.v1.ps1",
       "argumentFormat": "",
@@ -38,11 +43,6 @@
       "platforms": [
         "windows"
       ]
-    },
-    "PowerShell3": {
-      "target": "$(currentDirectory)\\vsts-variable-expand.v3.ps1",
-      "argumentFormat": "",
-      "workingDirectory": "$(currentDirectory)"
     }
   }
 }

@@ -76,12 +76,6 @@
     },
 
     {
-      "path": "vsts-variable-expand/vsts-variable-expand.js"
-    },
-    {
-      "path": "vsts-variable-expand/node_modules/vsts-task-lib"
-    },
-    {
       "path": "vsts-variable-expand/ps_modules/vststasksdk"
     },
     {
