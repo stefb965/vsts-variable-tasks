@@ -76,7 +76,13 @@
     },
 
     {
-      "path": "vsts-variable-expand/vsts-variable-expand.ps1"
+      "path": "vsts-variable-expand/ps_modules/vststasksdk"
+    },
+    {
+      "path": "vsts-variable-expand/vsts-variable-expand.v1.ps1"
+    },
+    {
+      "path": "vsts-variable-expand/vsts-variable-expand.v3.ps1"
     },
     {
       "path": "vsts-variable-expand/task.json"
