@@ -71,29 +71,29 @@ function applyManipulations(value: string): string {
     if (tl.getBoolInput("substring", false)) {
         tl.debug("Applying selected Substring.");
         const substringType = tl.getInput("substringType", true);
-        let length: string;
+        let length: 0;
 
         switch (substringType) {
             case "substring":
-                const start = tl.getInput("substringStart", true);
-                length = tl.getInput("substringLength", false);
+                const start = +tl.getInput("substringStart", true);
+                length = +tl.getInput("substringLength", false);
 
                 if (length) {
-                    value = value.substring(+start, +length);
+                    value = value.substring(start, length);
                 } else {
-                    value = value.substring(+start);
+                    value = value.substring(start);
                 }
                 break;
             case "left":
-                length = tl.getInput("substringLength", true);
-                if (value.length < +length) {
-                    value = value.substring(0, +length);
+                length = +tl.getInput("substringLength", true);
+                if (value.length > length) {
+                    value = value.substring(0, length);
                 }
                 break;
             case "right":
-                length = tl.getInput("substringLength", true);
-                if (value.length < +length) {
-                    value = value.substring(value.length - +length);
+                length = +tl.getInput("substringLength", true);
+                if (value.length > length) {
+                    value = value.substring(value.length - length);
                 }
                 break;
        }
