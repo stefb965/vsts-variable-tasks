@@ -71,10 +71,11 @@ function applyManipulations(value: string): string {
     if (tl.getBoolInput("substring", false)) {
         tl.debug("Applying selected Substring.");
         const substringType = tl.getInput("substringType", true);
-        let length: 0;
+        let length: number = 0;
 
         switch (substringType) {
             case "substring":
+            {
                 const start = +tl.getInput("substringStart", true);
                 length = +tl.getInput("substringLength", false);
 
@@ -84,6 +85,7 @@ function applyManipulations(value: string): string {
                     value = value.substring(start);
                 }
                 break;
+            }
             case "left":
                 length = +tl.getInput("substringLength", true);
                 if (value.length > length) {
@@ -185,8 +187,10 @@ function encodeString(value: string): string {
         case "uriComponent":
             return encodeURIComponent(value);
         case "base64":
+        {
             const buffer = new Buffer(value);
             return buffer.toString("base64");
+        }
         case "slashes":
             return addSlashes(value);
     }
@@ -203,8 +207,10 @@ function decodeString(value: string): string {
         case "uriComponent":
             return decodeURIComponent(value);
         case "base64":
+        {
             const buffer = new Buffer(value, "base64");
             return buffer.toString();
+        }
         case "slashes":
             return stripSlashes(value);
     }
