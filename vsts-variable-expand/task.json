@@ -41,8 +41,7 @@
     },
     "PowerShell3": {
       "target": "$(currentDirectory)\\vsts-variable-expand.v3.ps1",
-      "argumentFormat": "",
-      "workingDirectory": "$(currentDirectory)"
+      "argumentFormat": ""
     }
   }
 }
