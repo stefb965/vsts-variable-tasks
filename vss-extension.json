@@ -33,6 +33,7 @@
         },
         {
             "path": "extension/Images/Screenshots/expandvariables.png"
+
         }
     ],
     "content": {
@@ -50,6 +51,10 @@
         "support": {
             "uri": "https://github.com/jessehouwing/vsts-variable-tasks/issues"
         }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/jessehouwing/vsts-variable-tasks"
     },
     "branding": {
         "color": "rgb(36, 43, 50)",
