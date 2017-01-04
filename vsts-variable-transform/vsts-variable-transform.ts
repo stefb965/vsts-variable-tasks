@@ -1,5 +1,4 @@
-﻿///<reference path="./typings/main.d.ts" />
-import tl = require("vsts-task-lib/task");
+﻿import tl = require("vsts-task-lib/task");
 
 const transformAction = tl.getInput("transformAction", true);
 let value = tl.getInput("value") || "";
@@ -124,7 +123,8 @@ function applyManipulations(value: string): string {
         }
         else if (padCharacter.length !== 1) {
             tl._writeError("More than one padding character specified.");
-            tl.exit(-1);
+            tl.setResult(tl.TaskResult.Failed, "Failed");
+            return;
         }
 
         const padLength = +tl.getInput("padLength", true);

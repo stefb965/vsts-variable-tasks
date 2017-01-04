@@ -1,5 +1,4 @@
-﻿///<reference path="./typings/main.d.ts" />
-import tl = require("vsts-task-lib/task");
+﻿import tl = require("vsts-task-lib/task");
 
 const variable = tl.getInput("VariableName", true);
 const value = tl.getInput("Value");
