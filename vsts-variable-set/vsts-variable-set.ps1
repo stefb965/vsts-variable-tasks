@@ -15,7 +15,7 @@ Write-Output "Setting '$VariableName' to '$Value'."
 
 if ($VariableName -eq "Build.BuildNumber")
 {
-    Write-Host "##vso[build.updatebuildnumber;]$Value"
+    Write-Host "##vso[build.updatebuildnumber]$Value"
 }
 else
 {
